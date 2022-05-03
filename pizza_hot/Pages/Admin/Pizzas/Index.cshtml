@@ -1,0 +1,53 @@
+﻿@page
+@model pizza_hot.Pages.Admin.Pizzas.IndexModel
+
+@{
+    ViewData["Title"] = "Administration de pizza";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="Create">Créer une nouvelle pizza</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Pizza[0].nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pizza[0].prix)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pizza[0].vegetarienne)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pizza[0].ingredients)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Pizza) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vegetarienne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ingredients)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.PizzaID">En savoir plus</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PizzaID">Supprimer</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
